@@ -170,7 +170,7 @@ We haven't finished our story. Although Alice and Bob agreed on a shared secret 
 
 After the parties have agreed on a shared secret point, they can use it as the encryption key of any encryption method, for example AES, and from that point communicate securely through encryption.
 
-It is common to take one of the `𝑥` or `𝑦` coordinates ​​of the point, and use it. To maintain safety, it is recommended to hash the selected value and use only the hash result as an encryption key. In practice, sometimes the value is too big to be used an an encryption key. For example, if the hash function used is SHA-1, its output length is `160 bit`, while AES encryption requires only `128 bit`. In such a case, it is customary to use only `128 bits` out of the `160`, and discard the rest.
+It is common to take one of the `𝑥` or `𝑦` coordinates ​​of the point, and use it. To maintain safety, it is recommended to hash the selected value and use only the hash result as an encryption key. In practice, sometimes the value is too big to be used as an encryption key. For example, if the hash function used is SHA-1, its output length is `160 bit`, while AES encryption requires only `128 bit`. In such a case, it is customary to use only `128 bits` out of the `160`, and discard the rest.
 
 Anyway, at this point Alice and Bob agree on an encryption key, and they are the only ones who know it. From this point on they communicate through encryption, and anyone listening in the room cannot understand what they are saying.
 
@@ -194,7 +194,7 @@ If you answered "elliptic curves", then you are right again!
 
 The difficulty of the ECDLP problem can also be used to sign messages. During their date, Alice and Bob agreed on some elliptic curve and a generator `𝐺` in it. Bob generated some value $𝑑_𝐵$, called Bob's private key, and calculated the point $𝑃_𝐵 = 𝑑_𝐵𝐺$, called Bob's public key. Bob gave Alice his public key so that she could use it to later verify if a message she receives was indeed signed by him.
 
-Let's say Bob wants to sign a certain message `𝑚`. He will calculate the value $z = hash(m)$ using some secure hash function, and keep an amount of bits from the result equal to the bit length of `n`, the order of the generator `𝐺`. Bob will generate some random value `𝑘` in the range $1 ≤ 𝑘 ≤ 𝑛 − 1$. Bob will then calculate the point $𝑘𝐺 = (𝑥_1, 𝑦_1)$, take its `𝑥`-coordinate, and calculate $𝑟 = 𝑥1\ \ \ \ (mod\ n)$. Finally, Bob will calculate the value $𝑠 = 𝑘^{−1}(𝑧 + 𝑟𝑑_𝐵)$.
+Let's say Bob wants to sign a certain message `𝑚`. He will calculate the value $z = hash(m)$ using some secure hash function, and keep an amount of bits from the result equal to the bit length of `n`, the order of the generator `𝐺`. Bob will generate some random value `𝑘` in the range $1 ≤ 𝑘 ≤ 𝑛 − 1$. Bob will then calculate the point $𝑘𝐺 = (𝑥_1, 𝑦_1)$, take its `𝑥`-coordinate, and calculate $𝑟 = 𝑥_1\ \ \ \ (mod\ n)$. Finally, Bob will calculate the value $𝑠 = 𝑘^{−1}(𝑧 + 𝑟𝑑_𝐵)$.
 
 The signature of the message `𝑚` is defined to be the pair of calculated values ​​`𝑟` and `𝑠`.
 
